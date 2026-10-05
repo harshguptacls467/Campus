@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Campus Copilot
 
-## Getting Started
+> **AI-Native Campus Intelligence for Engineering Students**  
+> Grounded RGPV notices, real-time exam circular ingestion, intelligent day-wise study planning, placement gap analysis, and deterministic deadline action tracking.
 
-First, run the development server:
+---
 
+## 🚀 Quick Start
+
+### 1. Prerequisites
+- **Node.js**: 20+ LTS
+- **Supabase**: PostgreSQL with `pgvector`
+- **Google Gemini API Key**: `gemini-3.8-flash` & `gemini-embedding-001`
+
+### 2. Install & Configure
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+npm install
+
+# Setup environment variables
+cp .env.example .env
+# Edit .env and enter your Supabase & Gemini keys
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Run Locally
+```bash
+# Terminal 1: Run Fastify API Server (Port 5001)
+npm run server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Terminal 2: Run Next.js Frontend (Port 3000)
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit **http://localhost:3000** in your browser.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend:** Next.js 16 (App Router), React 19, Tailwind CSS, Lucide Icons, Framer Motion
+- **Backend API:** Fastify 5, TypeScript
+- **Database & Storage:** Supabase (PostgreSQL 15), pgvector 768-d semantic embeddings, Supabase Storage
+- **AI Intelligence:** Google Gemini (`gemini-3.8-flash`, `gemini-embedding-001`) with strict Zod runtime schema validation
+- **Data Ingestion:** Real-time RGPV portal scraper with SHA-256 deduplication and fallback circulars
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📖 Production Deployment Guide
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For step-by-step production deployment instructions (Vercel, Railway, Render, or self-hosted Ubuntu VPS with Nginx & PM2), please see:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👉 **[Complete Deployment Guide (DEPLOYMENT.md)](./DEPLOYMENT.md)**
+
