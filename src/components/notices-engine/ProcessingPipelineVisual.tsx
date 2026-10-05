@@ -2,28 +2,30 @@
 
 import React, { useState, useEffect } from "react";
 import { CheckCircle2, RefreshCw, Sparkles, Layers, ArrowRight } from "lucide-react";
+import { useCampusStore } from "@/store/useCampusStore";
 
 interface ProcessingPipelineVisualProps {
   filename: string;
   onComplete: () => void;
 }
 
-const STAGES = [
-  { id: 1, text: "Reading document OCR & layout" },
-  { id: 2, text: "Extracting important information" },
-  { id: 3, text: "Detecting dates & hard deadlines" },
-  { id: 4, text: "Identifying eligibility & semester cutoffs" },
-  { id: 5, text: "Finding required documents & late fine rules" },
-  { id: 6, text: "Checking relevance to you (Isha Sharma, 5th Sem CSE)" },
-  { id: 7, text: "Creating personalized actions & calendar reminders" },
-];
-
 export default function ProcessingPipelineVisual({
   filename,
   onComplete,
 }: ProcessingPipelineVisualProps) {
+  const { studentUser } = useCampusStore();
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
+
+  const STAGES = [
+    { id: 1, text: "Reading document OCR & layout" },
+    { id: 2, text: "Extracting important information" },
+    { id: 3, text: "Detecting dates & hard deadlines" },
+    { id: 4, text: "Identifying eligibility & semester cutoffs" },
+    { id: 5, text: "Finding required documents & late fine rules" },
+    { id: 6, text: `Checking relevance to you (${studentUser.name}, ${studentUser.semester})` },
+    { id: 7, text: "Creating personalized actions & calendar reminders" },
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {

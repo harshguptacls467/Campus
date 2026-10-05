@@ -42,6 +42,19 @@ interface CampusState {
   student: StudentProfile;
   studentUser: StudentUser;
   setStudent: (student: StudentProfile) => void;
+  updateStudentProfile: (updates: {
+    name?: string;
+    branch?: string;
+    department?: string;
+    semester?: string;
+    rollNo?: string;
+    cgpa?: number;
+    backlogs?: number;
+    activeBacklogs?: number;
+    overallAttendance?: number;
+    avatar?: string;
+  }) => void;
+  switchProfilePersona: (persona: "harsh" | "isha" | "aryan") => void;
 
   // Global Command Palette (Cmd+K / Ctrl+K)
   isCommandOpen: boolean;
@@ -92,7 +105,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     id: "msg-1",
     sender: "copilot",
     timestamp: "1:45 PM",
-    text: "Good afternoon, Isha! I'm monitoring your 5th Sem CSE stream. You have the DBMS Mid-Sem exam tomorrow at 10:00 AM, and your Computer Networks attendance is hovering at 68.2%. What do you need to figure out?",
+    text: "Good afternoon, Harsh! I'm monitoring your 5th Sem CSE stream. You have the DBMS Mid-Sem exam tomorrow at 10:00 AM, and your Computer Networks attendance is hovering at 68.2%. What do you need to figure out?",
   },
   {
     id: "msg-2",
@@ -141,6 +154,87 @@ export const useCampusStore = create<CampusState>((set, get) => ({
   student: CURRENT_STUDENT,
   studentUser: CURRENT_STUDENT_USER,
   setStudent: (student) => set({ student }),
+
+  updateStudentProfile: (updates) => {
+    const prevStudent = get().student;
+    const prevUser = get().studentUser;
+
+    const newName = updates.name ?? prevUser.name;
+    const firstName = newName.split(" ")[0];
+    const newBranch = updates.branch ?? updates.department ?? prevStudent.branch;
+    const newSem = updates.semester ?? prevStudent.semester;
+    const newRoll = updates.rollNo ?? prevStudent.rollNo;
+    const newCgpa = updates.cgpa ?? prevStudent.cgpa;
+    const newBacklogs = updates.backlogs ?? updates.activeBacklogs ?? prevStudent.backlogs;
+    const newAttendance = updates.overallAttendance ?? prevStudent.overallAttendance;
+    const newAvatar = updates.avatar ?? prevStudent.avatar;
+
+    const updatedStudent: StudentProfile = {
+      ...prevStudent,
+      name: newName,
+      branch: newBranch,
+      semester: newSem,
+      rollNo: newRoll,
+      cgpa: newCgpa,
+      backlogs: newBacklogs,
+      overallAttendance: newAttendance,
+      avatar: newAvatar,
+    };
+
+    const updatedUser: StudentUser = {
+      ...prevUser,
+      name: newName,
+      firstName,
+      department: newBranch,
+      semester: newSem,
+      rollNo: newRoll,
+      enrollmentNo: newRoll,
+      cgpa: newCgpa,
+      activeBacklogs: newBacklogs,
+      overallAttendance: newAttendance,
+      avatar: newAvatar,
+    };
+
+    set({ student: updatedStudent, studentUser: updatedUser });
+    get().showToast(`Profile updated to ${newName}!`);
+  },
+
+  switchProfilePersona: (persona) => {
+    if (persona === "harsh") {
+      get().updateStudentProfile({
+        name: "Harsh Gupta",
+        branch: "Computer Science & Engineering",
+        department: "Computer Science & Engineering",
+        semester: "5th Semester",
+        rollNo: "0101CS221084",
+        cgpa: 7.8,
+        backlogs: 0,
+        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+      });
+    } else if (persona === "isha") {
+      get().updateStudentProfile({
+        name: "Isha Sharma",
+        branch: "Computer Science & Engineering",
+        department: "Computer Science & Engineering",
+        semester: "5th Semester",
+        rollNo: "0101CS221084",
+        cgpa: 8.1,
+        backlogs: 0,
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      });
+    } else if (persona === "aryan") {
+      get().updateStudentProfile({
+        name: "Aryan Verma",
+        branch: "Electronics & Communication Engineering",
+        department: "Electronics & Communication Engineering",
+        semester: "7th Semester",
+        rollNo: "0101EC211045",
+        cgpa: 7.2,
+        backlogs: 1,
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      });
+    }
+  },
 
   isCommandOpen: false,
   setIsCommandOpen: (open) => set({ isCommandOpen: open }),

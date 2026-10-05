@@ -28,7 +28,7 @@ import Footer from "@/components/landing/Footer";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 export default function HomeApp() {
-  const { currentView, setCurrentView } = useCampusStore();
+  const { currentView, setCurrentView, studentUser } = useCampusStore();
 
   // If in Public Presentation Showcase mode:
   if (currentView === "landing") {
@@ -39,7 +39,7 @@ export default function HomeApp() {
         <div className="bg-indigo-950 text-white text-xs font-mono py-2 px-4 flex items-center justify-between z-50">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Campus Copilot • Student Operating System Active (Logged in as Isha Sharma)</span>
+            <span>Campus Copilot • Student Operating System Active (Logged in as {studentUser.name})</span>
           </div>
           <button
             onClick={() => setCurrentView("overview")}

@@ -68,14 +68,14 @@ export async function initializeDatabase(): Promise<void> {
       if (!profile) {
         await supabase.from("profiles").insert({
           id: DEFAULT_USER_ID,
-          name: "Isha Sharma",
+          name: "Harsh Gupta",
           branch: "CSE",
           semester: "5th Semester",
           cgpa: 7.80,
           backlogs: 0,
           graduation_year: 2027,
         });
-        console.log("✅ Seeded default student profile (Isha Sharma) in Supabase.");
+        console.log("✅ Seeded default student profile (Harsh Gupta) in Supabase.");
       }
     } catch (err: any) {
       console.warn("Profiles table check in Supabase:", err.message || err);

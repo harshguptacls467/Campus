@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 export default function WhatShouldIDoTodayWidget() {
-  const { setCurrentView, showToast } = useCampusStore();
+  const { setCurrentView, showToast, studentUser } = useCampusStore();
   const [data, setData] = useState<StudentTodayResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -150,10 +150,10 @@ export default function WhatShouldIDoTodayWidget() {
     const fallbackData: StudentTodayResponse = {
       date: "Monday, 5 Oct 2026",
       student: {
-        name: "Isha Sharma",
-        branch: "CSE",
-        semester: "5th Semester",
-        cgpa: 7.85,
+        name: studentUser.name || "Harsh Gupta",
+        branch: studentUser.department || "CSE",
+        semester: studentUser.semester || "5th Semester",
+        cgpa: studentUser.cgpa || 7.85,
       },
       summary:
         "TCS Digital drive closes tomorrow (eligible with 7.85 CGPA), Odd Sem Exam form registration deadline is approaching on 11 Oct, and DBMS exam countdown is at 10 days.",

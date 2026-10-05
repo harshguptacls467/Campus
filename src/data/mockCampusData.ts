@@ -19,8 +19,8 @@ export interface StudentProfile {
 }
 
 export const CURRENT_STUDENT: StudentProfile = {
-  name: "Isha Sharma",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+  name: "Harsh Gupta",
+  avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
   branch: "Computer Science & Engineering",
   semester: "5th Semester",
   rollNo: "22CSE084",

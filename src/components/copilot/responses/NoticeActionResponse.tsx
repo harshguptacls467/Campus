@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 export default function NoticeActionResponse() {
-  const { showToast } = useCampusStore();
+  const { showToast, studentUser } = useCampusStore();
   const [pipelineStep, setPipelineStep] = useState(0);
   const [isProcessing, setIsProcessing] = useState(true);
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function NoticeActionResponse() {
     "Detecting important dates & cutoff times...",
     "Understanding department eligibility...",
     "Finding required documents & fee rules...",
-    "Checking your profile (Isha Sharma, 5th Sem CSE)...",
+    `Checking your profile (${studentUser.name}, ${studentUser.semester})...`,
     "Creating personalized action triggers...",
   ];
 

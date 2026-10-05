@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export default function NoticeMagic() {
-  const { showToast } = useCampusStore();
+  const { showToast, studentUser } = useCampusStore();
   const [selectedNoticeId, setSelectedNoticeId] = useState<string>("notice-exam-form");
   const [isScanning, setIsScanning] = useState<boolean>(false);
 
@@ -226,7 +226,7 @@ export default function NoticeMagic() {
               <div className="pt-4 border-t border-zinc-200 space-y-2">
                 <button
                   onClick={() => {
-                    showToast(`Action Triggered: "${activeNotice.structuredData.actionLabel}" for Isha Sharma!`);
+                    showToast(`Action Triggered: "${activeNotice.structuredData.actionLabel}" for ${studentUser.name}!`);
                   }}
                   className="w-full py-3 px-4 rounded-xl bg-indigo-950 hover:bg-indigo-900 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-md shadow-indigo-950/20 transition-all hover:scale-[1.01]"
                 >

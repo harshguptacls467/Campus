@@ -9,6 +9,7 @@ import { STUDENT_OPPORTUNITIES } from "@/lib/mock/placements";
 import { UPCOMING_EXAM } from "@/lib/mock/exams";
 import CampusOrbFallback from "../3d/CampusOrbFallback";
 import WhatShouldIDoTodayWidget from "./WhatShouldIDoTodayWidget";
+import StudentModal from "../shared/StudentModal";
 import {
   Sparkles,
   ArrowRight,
@@ -52,6 +53,7 @@ export default function StudentOverview() {
   const [isSimulatingAttendance, setIsSimulatingAttendance] = useState(false);
   const [missCount, setMissCount] = useState<number>(1);
   const [selectedNoticeForSource, setSelectedNoticeForSource] = useState<string | null>(null);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   const handleAiAsk = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,11 +82,22 @@ export default function StudentOverview() {
           ========================================================================= */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-zinc-200/80">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-mono text-zinc-500 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>CAMPUS LIVE CONTEXT</span>
-            <span className="text-zinc-300">•</span>
-            <span>Monday, 5 Oct</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-mono text-zinc-500 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>CAMPUS LIVE CONTEXT</span>
+              <span className="text-zinc-300">•</span>
+              <span>Monday, 5 Oct</span>
+            </div>
+
+            <button
+              onClick={() => setIsProfileModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-xs font-mono text-indigo-800 hover:bg-indigo-100 transition-colors shadow-xs font-semibold cursor-pointer"
+              title="Click to change or switch student profile"
+            >
+              <span>👤 {studentUser.name}</span>
+              <span className="text-[10px] text-indigo-600 underline font-normal">Change</span>
+            </button>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-950 tracking-tight leading-tight">
@@ -618,6 +631,12 @@ export default function StudentOverview() {
           </div>
         </div>
       )}
+
+      {/* Student Profile Modal for viewing and switching profiles */}
+      <StudentModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+      />
 
     </div>
   );

@@ -75,7 +75,7 @@ export async function profileRoutes(fastify: FastifyInstance, opts: FastifyPlugi
       if (!profile) {
         profile = {
           id: userId,
-          name: "Isha Sharma",
+          name: "Harsh Gupta",
           branch: "CSE",
           semester: "5th Semester",
           cgpa: 7.8,

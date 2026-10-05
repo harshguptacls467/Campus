@@ -27,7 +27,7 @@ export const inMemoryDb = {
       "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
       {
         id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-        name: "Isha Sharma",
+        name: "Harsh Gupta",
         branch: "CSE",
         semester: "5th Semester",
         cgpa: 7.8,

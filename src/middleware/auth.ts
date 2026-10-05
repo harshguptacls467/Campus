@@ -86,8 +86,8 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
   request.user = {
     id: userId,
-    email: "isha.sharma@campus.edu",
+    email: "harsh.gupta@campus.edu",
     role: "authenticated",
-    name: "Isha Sharma",
+    name: "Harsh Gupta",
   };
 }

@@ -29,10 +29,10 @@ export interface StudentUser {
 
 export const CURRENT_STUDENT_USER: StudentUser = {
   id: "std-22cse084",
-  name: "Isha Sharma",
-  firstName: "Isha",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
-  email: "isha.sharma@uitrgpv.ac.in",
+  name: "Harsh Gupta",
+  firstName: "Harsh",
+  avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+  email: "harsh.gupta@uitrgpv.ac.in",
   rollNo: "0101CS221084",
   enrollmentNo: "0101CS221084",
   university: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal",

@@ -393,7 +393,7 @@ Instructions:
 
     return {
       id: userId,
-      name: "Isha Sharma",
+      name: "Harsh Gupta",
       branch: "CSE",
       semester: "5th Semester",
       cgpa: 7.85,
